@@ -1,0 +1,20 @@
+{
+  "name": "Open WebUI",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [3000, 11434],
+  "portsAttributes": {
+    "3000": {
+      "label": "Open WebUI",
+      "onAutoForward": "openBrowser"
+    },
+    "11434": {
+      "label": "Ollama API",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "remoteUser": "vscode"
+}
