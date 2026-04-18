@@ -2,6 +2,9 @@
 
 Run [Open WebUI](https://github.com/open-webui/open-webui) in a GitHub Codespace — with support for external LLM APIs (OpenAI, Anthropic via LiteLLM) and/or local Ollama models.
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/lbrenman/open-webui-codespace)
+
+
 ## Quick Start
 
 ### External APIs only (lightweight, 2-core/8GB machine)
