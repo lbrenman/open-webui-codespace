@@ -9,6 +9,10 @@ Run [Open WebUI](https://github.com/open-webui/open-webui) in a GitHub Codespace
 
 ### External APIs only (lightweight, 2-core/8GB machine)
 
+`OpenAI-compatible.yaml` is included in the repo. It is the external API spec that Open WebUI will call. Note that Open WebUI does not call /health. It only calls:
+* GET /v1/models — on startup and when refreshing connections
+* POST /v1/chat/completions — when you send a message
+
 1. Open this repo in a GitHub Codespace
 2. Copy and edit your env file:
    ```bash
