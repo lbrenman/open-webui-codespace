@@ -28,6 +28,15 @@ Make sure CORS is configured for the external API, namely allow `Authorization` 
    ```
 4. Open forwarded **port 3000**, create an admin account, and start chatting
 
+
+Open WebUI streams by default. You can turn it off per-conversation in the UI:
+
+Click the ⚙️ icon in the chat input area → toggle Stream Response off
+
+Or globally in Admin Panel → Settings → Interface → Stream Response.
+
+If your current Fusion API doesn't support streaming yet, the easiest fix is to just ignore the stream flag and always return a regular JSON response — Open WebUI will still work, it just won't show the typewriter effect.
+
 ---
 
 ### With Ollama (local models, 4-core/16GB+ machine)
