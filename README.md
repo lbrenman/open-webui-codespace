@@ -76,6 +76,17 @@ Set `OPENAI_API_KEY` in `.env` — that's it. GPT-4o, o1, and other models will 
 
 ---
 
+## Restarts
+
+* Stop and remove
+docker stop open-webui
+docker rm open-webui
+
+* Restart
+./scripts/start-external.sh
+
+---
+
 ## Recommended Ollama Models for Codespaces (CPU)
 
 | Model | Size | Notes |
