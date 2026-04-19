@@ -21,6 +21,7 @@ Make sure CORS is configured for the external API, namely allow `Authorization` 
    cp .env.example .env
    # Edit .env and add your API keys
    ```
+   > For Amplify Fusion, edit the LiteLLM section of .env and enter your base URL (e.g. https://axway-appc-se-design.sandbox.fusion.services.axway.com:4443/OpenWebUIAPI/v1) and enter `dummy` for the API Key and set the Fusion API security to `none`
 3. Start Open WebUI:
    ```bash
    ./scripts/start-external.sh
