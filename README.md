@@ -13,6 +13,8 @@ Run [Open WebUI](https://github.com/open-webui/open-webui) in a GitHub Codespace
 * GET /v1/models — on startup and when refreshing connections
 * POST /v1/chat/completions — when you send a message
 
+Make sure CORS is configured for the external API, namely allow `Authorization` and `content-type` headers and allow `GET` and `POST` methods.
+
 1. Open this repo in a GitHub Codespace
 2. Copy and edit your env file:
    ```bash
