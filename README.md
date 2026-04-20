@@ -9,25 +9,29 @@ Run [Open WebUI](https://github.com/open-webui/open-webui) in a GitHub Codespace
 
 ### External APIs only (lightweight, 2-core/8GB machine)
 
-`OpenAI-compatible.yaml` is included in the repo. It is the external API spec that Open WebUI will call. Note that Open WebUI does not call /health. It only calls:
+This is the setup for using Open WebUI with an Amplify Fusion OpenAI-compliant API or any external OpenAI-compliant API.
+
+An OpenAI compliant OpenAPI specification, `OpenAI-compatible.yaml` is included in the repo. It is the external API spec that Open WebUI will call. Note that Open WebUI does not call the `/health` method. It calls:
 * GET /v1/models — on startup and when refreshing connections
 * POST /v1/chat/completions — when you send a message
 
 Make sure CORS is configured for the external API, namely allow `Authorization` and `content-type` headers and allow `GET` and `POST` methods.
 
+For Amplify Fusion, it is recommended to secure the API with OAuth 2.0 and retrieve a long lived access token to use as the OPENAI_API_KEY in the .env file
+
 1. Open this repo in a GitHub Codespace
-2. Copy and edit your env file:
+2. Copy and edit your env file (done automatically by COdeSpace startup script):
    ```bash
    cp .env.example .env
    # Edit .env and add your API keys
    ```
-   > For Amplify Fusion, edit the LiteLLM section of .env and enter your base URL (e.g. https://axway-appc-se-design.sandbox.fusion.services.axway.com:4443/OpenWebUIAPI/v1) and enter `dummy` for the API Key and set the Fusion API security to `none`
+   > For Amplify Fusion, edit the External OpenAI section of .env and enter your base URL, OPENAI_API_BASE_URL (e.g. https://axway-appc-se-design.sandbox.fusion.services.axway.com:4443/OpenWebUIAPI/v1) and enter a long lived Fusion OAuth 2.0 Access token for the API Key, OPENAI_API_KEY. Alternatively, while not recommended, you can set the Fusion API security to `none` and set OPENAI_API_KEY to `dummy` but your Fusion API will be exposed to the public unsecured.
 3. Start Open WebUI:
    ```bash
    ./scripts/start-external.sh
    ```
 4. Open forwarded **port 3000**, create an admin account, and start chatting
-
+   > Note CodeSpace will automatically open the Open WebUI app in a new tab and it may do so prematurely before Open WebUI is fully loaded so wait and click refresh
 
 Open WebUI streams by default. You can turn it off per-conversation in the UI:
 
@@ -35,7 +39,9 @@ Click the ⚙️ icon in the chat input area → toggle Stream Response off
 
 Or globally in Admin Panel → Settings → Interface → Stream Response.
 
-If your current Fusion API doesn't support streaming yet, the easiest fix is to just ignore the stream flag and always return a regular JSON response — Open WebUI will still work, it just won't show the typewriter effect.
+If your current external (e.g. Fusion) API doesn't support streaming yet, the easiest fix is to just ignore the stream flag and always return a regular JSON response — Open WebUI will still work, it just won't show the typewriter effect.
+
+You can change the Base URL and Key in the admin settings.
 
 ---
 
@@ -54,6 +60,16 @@ If your current Fusion API doesn't support streaming yet, the easiest fix is to 
 4. Open forwarded **port 3000**
 
 ---
+
+## Open WebUI's auto-tagging feature
+
+Open WebUI automatically categorizes conversations for organization and search. It sends a second call to your API after each message to generate tags for the conversation. It makes other calls as well related to title autogeneration and follow up suggestions.
+
+You can disable these in Admin Panel → Settings → Interface:
+
+Turn off Title Auto-Generation
+Turn off Chat Tags Generation
+Turn off Follow Up Generation
 
 ## Connecting to Anthropic (Claude)
 
@@ -95,11 +111,11 @@ Set `OPENAI_API_KEY` in `.env` — that's it. GPT-4o, o1, and other models will 
 ## Restarts
 
 * Stop and remove
-docker stop open-webui
-docker rm open-webui
+  * `docker stop open-webui`
+  * `docker rm open-webui`
 
 * Restart
-./scripts/start-external.sh
+  * `./scripts/start-external.sh`
 
 ---
 
