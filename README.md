@@ -11,6 +11,8 @@ Run [Open WebUI](https://github.com/open-webui/open-webui) in a GitHub Codespace
 
 This is the setup for using Open WebUI with an Amplify Fusion OpenAI-compliant API or any external OpenAI-compliant API.
 
+A sample Fusion API for use with Open WebUI can be found [here](https://github.com/lbrenman/fusion-openai-api-open-webui)
+
 An OpenAI compliant OpenAPI specification, `OpenAI-compatible.yaml` is included in the repo. It is the external API spec that Open WebUI will call. Note that Open WebUI does not call the `/health` method. It calls:
 * GET /v1/models — on startup and when refreshing connections
 * POST /v1/chat/completions — when you send a message
